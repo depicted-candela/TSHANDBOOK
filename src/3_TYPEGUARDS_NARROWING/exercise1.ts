@@ -12,7 +12,7 @@ const getArea = (shape: Shape): number | string => {
         case 'Square':
             return getSquareArea(shape.width, shape.height);
         case 'Rectangle':
-            return getRectArea(shape.width, shape.height);
+            return getRectArea(shape.width!, shape.height!);
         default:
             return 0;
     }
