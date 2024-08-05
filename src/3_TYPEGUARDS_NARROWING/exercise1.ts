@@ -5,12 +5,12 @@ interface Shape {
     height?: number;
 }
 
-const getArea = (shape: Shape) => {
-    switch(shape.kind) {
+const getArea = (shape: Shape): number | string => {
+    switch (shape.kind) {
         case 'Circle':
             return getCircularArea(shape.radius!);
         case 'Square':
-            return getRectArea(shape.width, shape.height);
+            return getSquareArea(shape.width, shape.height);
         case 'Rectangle':
             return getRectArea(shape.width, shape.height);
         default:
@@ -18,14 +18,20 @@ const getArea = (shape: Shape) => {
     }
 }
 
-const getCircularArea = (radius: number) => {
+const getCircularArea = (radius: number): number => {
     return Math.PI * radius ** 2;
-}   
+}
 
-const getRectArea = (width?: number, height?: number) => {
+const getSquareArea = (width?: number, height?: number): number | string => {
+    if (width && height && width !== height) return `The shape was badly made because ${width} !== ${height}`;
+    if (width) return width ** 2;
+    if (height) return height ** 2;
+    return 0;
+}
+
+const getRectArea = (width: number, height: number): number | string => {
     if (width && height) return width * height;
-    if (width && !height) return width ** 2;
-    return height! ** 2;
+    return 0;
 }
 
 // Examples to test the functions
@@ -34,9 +40,26 @@ const circle: Shape = {
     radius: 5
 };
 
-const square: Shape = {
+const completeSquare: Shape = {
+    kind: 'Square',
+    width: 4,
+    height: 4
+};
+
+const erroneousSquare: Shape = {
+    kind: 'Square',
+    width: 4,
+    height: 6
+};
+
+const squareWithWidth: Shape = {
     kind: 'Square',
     width: 4
+};
+
+const squareWithHeight: Shape = {
+    kind: 'Square',
+    height: 4
 };
 
 const rectangle: Shape = {
@@ -45,6 +68,20 @@ const rectangle: Shape = {
     height: 6
 };
 
-console.log(`Circle area: ${getArea(circle)}`); // Should output the area of the circle
-console.log(`Square area: ${getArea(square)}`); // Should output the area of the square
-console.log(`Rectangle area: ${getArea(rectangle)}`); // Should output the area of the rectangle
+const printsArea = (shape: Shape): void => {
+    const area = getArea(shape);
+    if (typeof area === "string") {
+        console.log(area);
+        return;
+    }
+    if (shape.kind === 'Circle') console.log(`Circle area: ${area}`);
+    if (shape.kind === 'Square') console.log(`Square area: ${area}`);
+    console.log(`Rectangle area: ${area}`);
+}
+
+printsArea(circle);
+printsArea(completeSquare);
+printsArea(erroneousSquare);
+printsArea(squareWithWidth);
+printsArea(squareWithHeight);
+printsArea(rectangle);
