@@ -1,19 +1,19 @@
-interface Shape {
+export default interface Shape {
     kind: string;
     width?: number;
     height?: number;
 }
 
-interface Circle extends Shape {
+export interface Circle extends Shape {
     kind: 'Circle';
     radius: number;
 }
 
-interface Square extends Shape {
+export interface Square extends Shape {
     kind: 'Square';
 }
 
-interface Rectangle extends Shape {
+export interface Rectangle extends Shape {
     kind: 'Rectangle';
     width: number;
     height: number;
