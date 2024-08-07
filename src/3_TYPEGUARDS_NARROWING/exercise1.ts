@@ -1,14 +1,28 @@
-interface Shape {
-    kind: 'Circle' | 'Square' | 'Rectangle';
-    radius?: number;
+export default interface Shape {
+    kind: string;
     width?: number;
     height?: number;
 }
 
-const getArea = (shape: Shape): number | string => {
+export interface Circle extends Shape {
+    kind: 'Circle';
+    radius: number;
+}
+
+export interface Square extends Shape {
+    kind: 'Square';
+}
+
+export interface Rectangle extends Shape {
+    kind: 'Rectangle';
+    width: number;
+    height: number;
+}
+
+const getArea = (shape: Circle | Square | Rectangle ): number | string => {
     switch (shape.kind) {
         case 'Circle':
-            return getCircularArea(shape.radius!);
+            return getCircularArea(shape.radius);
         case 'Square':
             return getSquareArea(shape.width, shape.height);
         case 'Rectangle':
@@ -35,40 +49,40 @@ const getRectArea = (width: number, height: number): number | string => {
 }
 
 // Examples to test the functions
-const circle: Shape = {
+const circle: Circle = {
     kind: 'Circle',
     radius: 5
 };
 
-const completeSquare: Shape = {
+const completeSquare: Square = {
     kind: 'Square',
     width: 4,
     height: 4
 };
 
-const erroneousSquare: Shape = {
+const erroneousSquare: Square = {
     kind: 'Square',
     width: 4,
     height: 6
 };
 
-const squareWithWidth: Shape = {
+const squareWithWidth: Square = {
     kind: 'Square',
     width: 4
 };
 
-const squareWithHeight: Shape = {
+const squareWithHeight: Square = {
     kind: 'Square',
     height: 4
 };
 
-const rectangle: Shape = {
+const rectangle: Rectangle = {
     kind: 'Rectangle',
     width: 4,
     height: 6
 };
 
-const printsArea = (shape: Shape): void => {
+const printsArea = (shape: Circle | Rectangle | Square): void => {
     const area = getArea(shape);
     if (typeof area === "string") {
         console.log(area);

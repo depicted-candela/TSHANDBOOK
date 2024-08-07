@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var getArea = function (shape) {
     switch (shape.kind) {
         case 'Circle':
