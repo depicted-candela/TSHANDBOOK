@@ -26,5 +26,5 @@ var getSquarePerimeter = function (square) {
     return square.height ? square.height * 2 : square.width ? square.width * 2 : "The shape was badly made because ".concat(square.width, " !== ").concat(square.height);
 };
 var getCirclePerimeter = function (circle) {
-    return Math.PI * circle.radius;
+    return Math.PI * Math.pow(circle.radius, 2);
 };
