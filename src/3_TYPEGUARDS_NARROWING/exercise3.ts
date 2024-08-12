@@ -36,5 +36,5 @@ const getSquarePerimeter = (square: Square) => {
 }
 
 const getCirclePerimeter = (circle: Circle) => {
-    return Math.PI * circle.radius;
+    return Math.PI * circle.radius ** 2;
 }
