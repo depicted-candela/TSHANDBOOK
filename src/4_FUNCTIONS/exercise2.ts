@@ -1,8 +1,14 @@
+export interface Rectangle {
+    width: number;
+    height: number;
+}
+
 export type CalculatesRectangularArea = {
     description: string;
-    (width: number, height: number): number; 
+    (rectangle: Rectangle): number; 
 }
 
 export default function callSignatureRectanlgularArea(fn: CalculatesRectangularArea) {
-    return fn(1, 1);
+    const rectangle: Rectangle = {width: 1, height: 2}
+    return fn(rectangle);
 }
