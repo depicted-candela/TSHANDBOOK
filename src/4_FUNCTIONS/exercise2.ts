@@ -8,7 +8,7 @@ export type CalculatesRectangularArea = {
     (rectangle: Rectangle): number; 
 }
 
-export default function callSignatureRectanlgularArea(fn: CalculatesRectangularArea) {
+export default function callSignatureRectangularArea(fn: CalculatesRectangularArea) {
     const rectangle: Rectangle = {width: 1, height: 2}
     return fn(rectangle);
 }
