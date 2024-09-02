@@ -1,5 +1,3 @@
-// src/4_FUNCTIONS/exercise10.ts
-
 interface Point10 {
     x: number;
     y: number;

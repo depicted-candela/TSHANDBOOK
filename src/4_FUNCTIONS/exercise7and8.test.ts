@@ -1,4 +1,4 @@
-import translate, {Differential, Shape} from "./exercises7and8";
+import translate, {Differential, Shape} from "./exercise7and8";
 
 describe('Testing overloading for a function that moves a shape differentially or scaled', () => {
     test('Test for differential movement', () => {
