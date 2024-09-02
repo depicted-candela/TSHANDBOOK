@@ -16,7 +16,7 @@ export interface LabelsForShape {
     name: string;
 }
 
-export default function mergeShapeWithItsLabels<LS extends Shape & LabelsForShape, S extends Shape>(shape: S, labels: LabelsForShape): LS {
+export default function mergeShapeWithItsLabels<S extends Shape, L extends LabelsForShape, LS extends S & L>(shape: S, labels: L): LS {
     const shapeWithArea = 'area' in shape;
     const labelsWithProperties = 'color' in labels && 'name' in labels;
     if (!shapeWithArea) throw new Error('The object for the argument shape is not a shape');
