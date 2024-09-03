@@ -1,6 +1,7 @@
-import constructShapes, { ShapeConstructorFunction, Shape } from './exercise13';
+import constructShapes, { ShapeConstructorFunction, ShapeConstructor } from './exercise13';
 
 describe('ShapeConstructorFunction', () => {
+
     it('should create a shape object with kind and radius', () => {
         const shape = new (ShapeConstructorFunction as any)('circle', 5);
         expect(shape.kind).toBe('circle');
@@ -20,10 +21,12 @@ describe('ShapeConstructorFunction', () => {
         expect(shape.height).toBe(10);
         expect(shape.base).toBe(15);
     });
+
 });
 
 describe('constructShapes', () => {
-    const constructor = ShapeConstructorFunction as any as { new(...args: any[]): Shape };
+    
+    const constructor = ShapeConstructorFunction as unknown as ShapeConstructor;
 
     it('should construct a circle shape', () => {
         const shape = constructShapes(constructor, 'circle', 5);
@@ -38,12 +41,12 @@ describe('constructShapes', () => {
         expect(shape.width).toBe(20);
     });
 
-    // it('should construct a triangle shape', () => {
-    //     const shape = constructShapes(constructor, 'triangle', 10, 15);
-    //     expect(shape.kind).toBe('triangle');
-    //     expect(shape.height).toBe(10);
-    //     expect(shape.base).toBe(15);
-    // });
+    it('should construct a triangle shape', () => {
+        const shape = constructShapes(constructor, 'triangle', 10, 15);
+        expect(shape.kind).toBe('triangle');
+        expect(shape.height).toBe(10);
+        expect(shape.base).toBe(15);
+    });
 
     it('should throw an error for invalid radius value for a circle', () => {
         expect(() => constructShapes(constructor, 'circle', -5)).toThrow('Invalid values for radius of circle');
@@ -58,4 +61,5 @@ describe('constructShapes', () => {
         expect(() => constructShapes(constructor, 'triangle', 0, 15)).toThrow('Invalid values for dimensions of triangle');
         expect(() => constructShapes(constructor, 'triangle', 10, 0)).toThrow('Invalid values for dimensions of triangle');
     });
+
 });

@@ -22,8 +22,6 @@ function constructShapes(constructor: ShapeConstructor, kind: "rectangle", heigh
 function constructShapes(constructor: ShapeConstructor, kind: "triangle", height: number, base: number): Shape;
 function constructShapes(constructor: ShapeConstructor, kind: "circle", radius: number): Shape;
 function constructShapes(constructor: ShapeConstructor, kind: string, dimension1: number, dimension2?: number) {
-    const notContainsOneVariable = undefined === dimension1;
-    if (notContainsOneVariable) throw new Error('A shape must have at least one dimension');
     switch(kind) {
         case 'circle':
             validsValues(kind, dimension1);
@@ -33,7 +31,7 @@ function constructShapes(constructor: ShapeConstructor, kind: string, dimension1
             return new constructor(kind, undefined, dimension1, dimension2);
         case 'triangle':
             validsValues(kind, dimension1, dimension2);
-            return new constructor(kind, undefined, dimension1, dimension2);
+            return new constructor(kind, undefined, dimension1, undefined, dimension2);
         default: throw new Error('The shape is invalid')
     }
 };
